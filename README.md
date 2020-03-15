@@ -1,8 +1,13 @@
 # CompetitiveProgramming
 
+Folder containing everything of Competitive Programming
 
-LIVROS PARA ESTUDO DE MARATONA DE PROGRAMAÇÃO!
+Contains:
+    - Implementations
+    - c++ templates
+    - books
 
-
-Roteiro da UFMG: http://wiki.maratona.dcc.ufmg.br/index.php/Roteiros
-Codeforces: http://codeforces.com/
+Interesting links:
+    - Roteiro da UFMG:      http://wiki.maratona.dcc.ufmg.br/index.php/Roteiros
+    - CSES problem set:     https://cses.fi/problemset/
+    - Codeforces Profile:   http://codeforces.com/profile/nickCrist
