@@ -20,13 +20,15 @@ typedef vector<pi> vpi;
 
 
 void solve(){
-
+    double a, b;
+    cin >> a >> b;
+    cout << a/b << endl;
 }
 
 int main(){
     //int t; cin >> t;
     //while(t--) solve();
 
-    //solve();
+    solve();
     return 0;
 }

@@ -20,13 +20,18 @@ typedef vector<pi> vpi;
 
 
 void solve(){
-
+    int n, k;
+    cin >> n >> k;
+    string str;
+    cin >> str;
+    str[k-1] -= (int)'A' - (int)'a';
+    cout << str << endl;
 }
 
 int main(){
     //int t; cin >> t;
     //while(t--) solve();
 
-    //solve();
+    solve();
     return 0;
 }

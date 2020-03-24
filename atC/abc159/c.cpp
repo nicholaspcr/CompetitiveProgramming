@@ -20,13 +20,18 @@ typedef vector<pi> vpi;
 
 
 void solve(){
+    int n;
+    cin >> n;
+    double l = n/3.0;
+    double ans = l*l*l;
 
+    printf("%.12lf\n", ans);
 }
 
 int main(){
     //int t; cin >> t;
     //while(t--) solve();
 
-    //solve();
+    solve();
     return 0;
 }

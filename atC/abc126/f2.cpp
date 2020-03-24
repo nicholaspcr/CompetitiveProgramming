@@ -20,13 +20,32 @@ typedef vector<pi> vpi;
 
 
 void solve(){
-
+    int m, k;
+    cin >> m >> k;
+    if(m == 1 && k == 0){
+        printf("0 0 1 1\n");
+    }else if(m == 1 && k != 0){
+        cout << -1 << endl;
+    }else if( k >= (1<<m) ){
+        cout << -1 << endl;
+    }else{
+        for(int i = 0; i < (1<<m); i++){
+            if(i == k) continue;
+            printf("%d ", i);
+        }
+        printf("%d ", k);
+        for(int i = (1<<m)-1; i >= 0; i--){
+            if(i == k)continue;
+            printf("%d ", i);
+        }
+        printf("%d\n", k);
+    }
 }
 
 int main(){
     //int t; cin >> t;
     //while(t--) solve();
 
-    //solve();
+    solve();
     return 0;
 }

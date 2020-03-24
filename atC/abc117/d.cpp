@@ -20,13 +20,28 @@ typedef vector<pi> vpi;
 
 
 void solve(){
+    ll n, k;
+    cin >> n >> k;
+    vll v(n);
+    for(int i = 0; i < n; i++)
+        cin >> v[i];
 
+    ll ans = 0;
+    ll limit = (k > 1000) ? k -((ll)sqrt((ll)sqrt(k))) : (ll)max((ll)0, k - 100);
+    for(ll i = k; i >= limit;i--){
+        ll best = 0;
+        for(int j = 0; j < n; j++){
+            best += (v[j]^i);
+        }
+        ans = max(best,ans);
+    }
+    cout << ans << endl;
 }
 
 int main(){
     //int t; cin >> t;
     //while(t--) solve();
 
-    //solve();
+    solve();
     return 0;
 }

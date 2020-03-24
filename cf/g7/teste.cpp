@@ -4,8 +4,8 @@
 #define PB push_back
 #define MP make_pair
 #define all(x) x.begin(), x.end()
-#define FOR(i,a,b) for(int i = a; i < b; i++)
 #define INF 0x3f3f3f3f
+
 
 using namespace std;
 
@@ -14,13 +14,18 @@ typedef pair<int,int> pi;
 typedef long long ll;
 
 void solve(){
-
+    ll sum = 0;
+    for(int i = 1; i <= 200000; i++){
+        sum += i;
+    }
+    cout << sum << endl;
+    cout << 998244353 << endl;
 }
 
 int main() {
     //int t; cin >> t;
     //while(t--) solve();
 
-    //solve();
+    solve();
     return 0;
 }

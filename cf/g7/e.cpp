@@ -4,8 +4,8 @@
 #define PB push_back
 #define MP make_pair
 #define all(x) x.begin(), x.end()
-#define FOR(i,a,b) for(int i = a; i < b; i++)
 #define INF 0x3f3f3f3f
+
 
 using namespace std;
 

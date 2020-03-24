@@ -20,13 +20,33 @@ typedef vector<pi> vpi;
 
 
 void solve(){
+    int n; cin >> n;
+    vi v(n);
+    map<int,int> m;
+    pi big = MP(-1 ,0);
+    for(int i = 0; i < n; i++){
+        cin >> v[i];
+        m[v[i]]++;
+        if(m[v[i]] > big.S)
+            big = MP(v[i], m[v[i]]);
+    }
+    vi ans(n);
+    for(int i = 0; i < n; i++){
+        ans[i] = m[v[i]] - 1;
+    }
 
+
+    for(int i = 0 ; i < n; i++)
+        if(v[i] != big.F)
+            cout << ans[i]+big.S-1 << endl;
+        else
+            cout << ans[i] << endl;
 }
 
 int main(){
     //int t; cin >> t;
     //while(t--) solve();
 
-    //solve();
+    solve();
     return 0;
 }

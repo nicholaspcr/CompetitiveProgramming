@@ -20,13 +20,29 @@ typedef vector<pi> vpi;
 
 
 void solve(){
+    int n; cin >> n;
+    int l = n/100;
+    int r = n%100;
 
+    if(l > 0 && l <= 12){
+        if(r > 0 && r <= 12){
+            cout << "AMBIGUOUS\n";
+        }else{
+            cout << "MMYY\n";
+        }
+    }else{
+        if(r > 0 && r <= 12){
+            cout << "YYMM\n";
+        }else{
+            cout << "NA\n";
+        }
+    }
 }
 
 int main(){
     //int t; cin >> t;
     //while(t--) solve();
 
-    //solve();
+    solve();
     return 0;
 }

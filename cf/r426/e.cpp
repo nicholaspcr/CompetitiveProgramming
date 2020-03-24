@@ -3,6 +3,8 @@
 #define S second
 #define PB push_back
 #define MP make_pair
+#define all(x) x.begin(), x.end()
+#define FOR(i,a,b) for(int i = a; i < b; i++)
 
 using namespace std;
 
@@ -14,10 +16,10 @@ void solve(){
 
 }
 
-int main(){
+int main() {
     //int t; cin >> t;
     //while(t--) solve();
-    //
+
     //solve();
     return 0;
 }

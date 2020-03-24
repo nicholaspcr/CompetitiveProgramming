@@ -18,15 +18,31 @@ typedef vector<int> vi;
 typedef vector<ll> vll;
 typedef vector<pi> vpi;
 
+const double EPS = 1e-9;
 
 void solve(){
+    int n;
+    double k;
+    cin >> n >> k;
 
+    double ans = 0.0;
+    for(int i = 1; i <= n; i++){
+        double op = 1.0/n;
+        double coin = 1;
+        double value = (double)i;
+        while(value+EPS < k){
+            coin = coin*(0.5);
+            value *= 2;
+        }
+        ans += op * coin;
+    }
+    printf("%.12lf\n", ans);
 }
 
 int main(){
     //int t; cin >> t;
     //while(t--) solve();
 
-    //solve();
+    solve();
     return 0;
 }

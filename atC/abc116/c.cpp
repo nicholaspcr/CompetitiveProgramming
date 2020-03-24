@@ -5,9 +5,6 @@
 #define MP make_pair
 #define INF 0x3f3f3f3f
 #define all(x) x.begin(), x.end()
-#define forn(i,n) for(int i = 0; i < n; i++)
-#define FOR(i,a,b) for(int i = a; i < b; i++)
-#define FORR(i,a,b) for(int i = a; i >= b; i--)
 
 using namespace std;
 
@@ -20,13 +17,30 @@ typedef vector<pi> vpi;
 
 
 void solve(){
-
+    int n; cin >> n;
+    vi v(n);
+    int maxi = 0;
+    vi seg;
+    for(int i = 0; i < n; i++){
+       cin >> v[i];
+    }
+    
+    int ans = 0;
+    for(int i = 0; i < n; i ++){
+        int tmp = v[i];
+        ans += tmp;
+        for(int j = i; j < n; j++){
+            tmp = min(tmp,v[j]);
+            v[j] -= tmp;
+        }
+    }
+    cout << ans << endl;
 }
 
 int main(){
     //int t; cin >> t;
     //while(t--) solve();
 
-    //solve();
+    solve();
     return 0;
 }

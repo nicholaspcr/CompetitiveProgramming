@@ -20,13 +20,27 @@ typedef vector<pi> vpi;
 
 
 void solve(){
+    int n; cin >> n;
+    vi v(n);
+    for(int i = 0; i < n; i++)
+        cin >> v[i];
 
+    sort(all(v));
+
+    int sum = 0;
+    for(int i = 0 ; i < n-1; i++)
+        sum += v[i];
+
+    if( sum <= v[n-1] ) 
+        cout << "No\n";
+    else
+        cout << "Yes\n";
 }
 
 int main(){
     //int t; cin >> t;
     //while(t--) solve();
 
-    //solve();
+    solve();
     return 0;
 }
