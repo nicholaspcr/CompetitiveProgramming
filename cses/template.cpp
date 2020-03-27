@@ -3,24 +3,27 @@
 #define S second
 #define PB push_back
 #define MP make_pair
-#define INF 0x3f3f3f3f
+#define all(x) x.begin(), x.end()
 
 using namespace std;
 
 typedef vector<int> vi;
 typedef pair<int,int> pi;
-typedef long long ll;
-typedef vector<ll> vll;
 typedef vector<pi> vpi;
+typedef long long ll;
 
-void solve(){
+template <typename T> void max_self(T& a, T b){
+	a = max(a,b);
+}
 
+void solve(){	
+    
 }
 
 int main(){
     //int t; cin >> t;
     //while(t--) solve();
     //
-    //solve();
+    solve();
     return 0;
 }

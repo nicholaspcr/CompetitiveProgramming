@@ -3,27 +3,32 @@
 #define S second
 #define PB push_back
 #define MP make_pair
+#define all(x) x.begin(), x.end()
 
 using namespace std;
 
 typedef vector<int> vi;
 typedef pair<int,int> pi;
+typedef vector<pi> vpi;
 typedef long long ll;
 
-void solve(){
+template <typename T> void max_self(T& a, T b){
+	a = max(a,b);
+}
+
+void solve(){	
     int n; cin >> n;
-    vi v(n);
-    int sum = 0;
+    vector<ll> v(n);    
     for(int i = 0; i < n; i++){
-        cin >> v[i];
-        sum += v[i];
-    }
-    sum/=n;
-    ll cost = 0;
-    for(int i = 0; i < n; i++){
-        cost += abs(sum - v[i]);
-    }
-    cout << cost << endl;
+		 cin >> v[i];		 
+	}
+	sort(all(v));
+	int m = n/2;
+	ll ans = 0;
+	for(int i = 0; i < n; i++){
+		ans += abs(v[i] - v[m]);
+	}
+	cout << ans << endl;
 }
 
 int main(){
