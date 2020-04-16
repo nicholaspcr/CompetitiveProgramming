@@ -15,19 +15,19 @@ typedef long long ll;
 template <typename T> void max_self(T& a, T b){
 	a = max(a,b);
 }
-
-void solve(){
-    int n, x; cin >> n;
-    int f = 1;
-    for(int i = 0; i < n; i++){
-		cin >> x;
-		if(~x & 1)
-			cout << x/2 << endl;
-		else{
-			cout << (x+f)/2 << endl;
-			f *= -1;
-		}
-	}
+	
+void solve(){	
+   int n; cin >> n;
+   vi v(n);
+   for(int i = 0; i < n; i++) cin >> v[i];
+   sort(all(v));
+   int ans = v[n-1];
+   int ptr = 0;
+   while(v[ptr] <= v[n-1]){
+	   v[n-1] -= v[ptr];
+	   ptr++;
+   }
+   
 }
 
 int main(){

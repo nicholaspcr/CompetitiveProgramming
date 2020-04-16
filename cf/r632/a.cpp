@@ -16,26 +16,33 @@ template <typename T> void max_self(T& a, T b){
 	a = max(a,b);
 }
 
-void solve(){
-    int n, x; cin >> n;
-    int f = 1;
-    for(int i = 0; i < n; i++){
-		cin >> x;
-		if(~x & 1)
-			cout << x/2 << endl;
-		else{
-			cout << (x+f)/2 << endl;
-			f *= -1;
+void solve(){	
+    int n,m;
+    cin>>n>>m;
+    char mat[n][m];
+    mat[0][0] = 'W';
+    for(int i=0;i<n;i++){
+		for(int j=0;j<m;j++){
+			if(!i && !j) continue;
+			mat[i][j] = 'B';
+		}		
+	}	
+	
+	for(int i=0;i<n;i++){
+		for(int j=0;j<m;j++){
+			cout << mat[i][j];
 		}
+		cout<<"\n";
 	}
 }
+
 
 int main(){
 	ios_base::sync_with_stdio(false);
 	cin.tie(NULL);
-    //int t; cin >> t;
-    //while(t--) solve();
+    int t; cin >> t;
+    while(t--) solve();
     //
-    solve();
+    //solve();
     return 0;
 }

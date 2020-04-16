@@ -17,7 +17,7 @@ template <typename T> void max_self(T& a, T b){
 }
 
 void solve(){	
-   
+    
 }
 
 int main(){
@@ -25,7 +25,6 @@ int main(){
   cin.tie(NULL);
   //int t; cin >> t;
   //while(t--) solve();
-  //
   //solve();
   return 0;
 }

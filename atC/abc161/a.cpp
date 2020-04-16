@@ -16,18 +16,18 @@ template <typename T> void max_self(T& a, T b){
 	a = max(a,b);
 }
 
-void solve(){
-    int n, x; cin >> n;
-    int f = 1;
-    for(int i = 0; i < n; i++){
-		cin >> x;
-		if(~x & 1)
-			cout << x/2 << endl;
-		else{
-			cout << (x+f)/2 << endl;
-			f *= -1;
-		}
-	}
+void swap(int* a, int* b){
+	int t = *a;
+	*a = *b;
+	*b = t;
+}
+
+void solve(){	
+    int a, b, c;
+    cin >> a >> b >> c;
+    swap(a, b);
+    swap(a, c);
+    cout <<a<<" "<<b<<" "<<c<<endl;
 }
 
 int main(){

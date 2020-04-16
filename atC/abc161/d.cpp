@@ -16,18 +16,29 @@ template <typename T> void max_self(T& a, T b){
 	a = max(a,b);
 }
 
-void solve(){
-    int n, x; cin >> n;
-    int f = 1;
-    for(int i = 0; i < n; i++){
-		cin >> x;
-		if(~x & 1)
-			cout << x/2 << endl;
-		else{
-			cout << (x+f)/2 << endl;
-			f *= -1;
+void solve(){	
+    int n; cin>>n;
+    vi v;
+    vi numD;
+    for(int i = 1; i <= 6; i++){
+		int op = 9;
+		for(int j = 1; j < i; j++){
+			op *= 3;
 		}
+		numD.PB(op);
 	}
+	int op = 1;
+	for(int i = 0;i < 6;i++){
+		if(numD[i] > n){
+			for(int j = 0; j < i; j++) op *= 3;
+			break;
+		}
+		n -= numD[i];
+	}
+	int t = n/op;
+	cout<<t<<endl;
+	
+	// ERRADO
 }
 
 int main(){

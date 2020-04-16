@@ -18,9 +18,21 @@ const int MOD = 1e9 + 7;
 
 void solve(){
     int n; cin >> n;
+    if(n == 1){
+		char t;
+		cin >> t;
+		if(t == '.')
+			cout << 1 << endl;
+		else
+			cout << 0 << endl;
+		return;
+	}
     int ans[n+1][n+1];
     memset(ans, 0, sizeof ans);
-    char grid[n][n];
+    char grid[n+1][n+1];
+    for(int i = 0; i <= n; i++)
+		for(int j = 0; j <= n; j++)
+			grid[i][j] = '.';
     for(int i = 0; i < n; i++){
         string str;
         cin >> str;
@@ -51,8 +63,8 @@ void solve(){
             printf("%d ", ans[i][j]);
         }
         printf("\n");
-    }
-    */
+    }*/
+    
     cout << ans[n-1][n-1] << endl;
 }
 

@@ -16,17 +16,31 @@ template <typename T> void max_self(T& a, T b){
 	a = max(a,b);
 }
 
-void solve(){
-    int n, x; cin >> n;
-    int f = 1;
+const int MOD = 1e9+7;
+
+void solve(){	
+    int n, m;
+    cin >> n >> m;
+    vi v(n);
+    for(int i = 0; i < n; i++) cin >> v[i];
+    vi dp(n+1, 0);
+    dp[0] = 0;
     for(int i = 0; i < n; i++){
-		cin >> x;
-		if(~x & 1)
-			cout << x/2 << endl;
-		else{
-			cout << (x+f)/2 << endl;
-			f *= -1;
+		if(i == 0){
+			if(!v[i])
+				dp[i] = 3;
+		}else if(i == n-1){
+			if(!v[i])
+				dp[i] = 3 * dp[i-1];		
+		}else{
+			if(!v[i-1] && !v[i] && !v[i+1]){
+				dp[i] = m*dp[i-1];
+			}else if( (!v[i-1] && !v[i]) || (!v[i+1] && !v[i])){
+				dp[i] = 3*dp[i-1];
+			}
+			
 		}
+		dp[i]%=MOD;
 	}
 }
 

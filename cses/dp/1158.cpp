@@ -18,28 +18,26 @@ void solve(){
     int n, x;
     cin >> n >> x;
     vpi books(n);
-    int numPages = 0;
     for(int i = 0; i < n; i++)
-        cin >> books[i].F;
+        cin >> books[i].F; // PRICE
     for(int i = 0; i < n; i++){
-        cin >> books[i].S;
-        numPages += books[i].S;
+        cin >> books[i].S; // PAGES
     }
 
     //sort(all(books));
-    pi dp[n+1][n+1];
-    for(int i = 0; i <= n; i++){
-        for(int j = 0; j <= n; j++){
-            dp[i][j] = MP(0,0);
-        }
-    }
-    dp[0][0] = MP(0, x);
+    vi dp(x+1, -1);    
+    dp[0] = 0;
     for(int i = 0; i < n; i++){
-        for(int j = 0
-    }
+        for(int j = x; j >= 0; j--){
+			if( (dp[j] != -1) && j+books[i].F <= x){
+				dp[j+books[i].F] = max(dp[j+books[i].F], dp[j]+books[i].S);
+			}
+		}
+    }    
     int ans = 0;
-    for(int i = 0; i <= numPages; i++){
-        ans = max(dp[i].F, ans);
+    for(int i = 0; i <= x; i++){
+		//cout << dp[i] << " ";
+        ans = max(dp[i], ans);
     }
     printf("%d\n", ans);
 }

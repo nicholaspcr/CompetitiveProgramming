@@ -17,7 +17,16 @@ template <typename T> void max_self(T& a, T b){
 }
 
 void solve(){	
-   
+ int n;cin>>n;
+ while(n){
+    int t = n%10;
+    if(t == 7){
+      cout<<"Yes\n";
+      return;
+    }
+    n/=10;
+ }
+ cout<<"No\n";
 }
 
 int main(){
@@ -25,7 +34,6 @@ int main(){
   cin.tie(NULL);
   //int t; cin >> t;
   //while(t--) solve();
-  //
-  //solve();
+  solve();
   return 0;
 }

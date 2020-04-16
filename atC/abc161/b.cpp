@@ -16,18 +16,28 @@ template <typename T> void max_self(T& a, T b){
 	a = max(a,b);
 }
 
-void solve(){
-    int n, x; cin >> n;
-    int f = 1;
-    for(int i = 0; i < n; i++){
-		cin >> x;
-		if(~x & 1)
-			cout << x/2 << endl;
-		else{
-			cout << (x+f)/2 << endl;
-			f *= -1;
+const double EPS = 1e-9;
+
+void solve(){	
+    int n, m;
+    cin>>n>>m;
+    vector<double> v(n);
+    double tV = 0;
+    for(int i = 0; i < n; ++i){
+		cin>>v[i];
+		tV += v[i];
+	}
+	double op = (1/(4.0*(double)m));	
+	op *= tV;
+	sort(v.rbegin(), v.rend());
+	
+	for(int i = 0; i < m; i++){
+		if(v[i]+EPS < op){
+			cout<<"No\n";
+			return;
 		}
 	}
+	cout<<"Yes\n";
 }
 
 int main(){

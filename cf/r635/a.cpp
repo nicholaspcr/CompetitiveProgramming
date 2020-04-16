@@ -17,14 +17,22 @@ template <typename T> void max_self(T& a, T b){
 }
 
 void solve(){	
-   
+  int a,b,c,d;
+  cin>>a>>b>>c>>d;
+  int x,y,z;
+  x = b;
+  y = b;
+  if(c > x+y)
+    y += c-(x+y);
+  z = c;
+  cout <<x<<" "<<y<<" "<<z<<endl;
 }
 
 int main(){
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
-  //int t; cin >> t;
-  //while(t--) solve();
+  int t; cin >> t;
+  while(t--) solve();
   //
   //solve();
   return 0;

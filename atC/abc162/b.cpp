@@ -17,7 +17,19 @@ template <typename T> void max_self(T& a, T b){
 }
 
 void solve(){	
-   
+  ll memo[(int)1e6+1];
+  memset(memo,0,sizeof memo);
+
+  ll op = 0;
+  for(int i=1;i<1e6+1;i++){
+    memo[i] = op;
+    if(i%3 == 0) continue;
+    if(i%5 == 0) continue;
+    op += i;
+    memo[i] += i;
+  }
+  int n;cin>>n;
+  cout << memo[n]<<endl;
 }
 
 int main(){
@@ -25,7 +37,6 @@ int main(){
   cin.tie(NULL);
   //int t; cin >> t;
   //while(t--) solve();
-  //
-  //solve();
+  solve();
   return 0;
 }
