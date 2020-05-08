@@ -16,8 +16,12 @@ template <typename T> void max_self(T& a, T b){
   a = max(a,b);
 }
 
+template <typename T> void min_self(T& a, T b){
+  a = min(a,b);
+}
+
 void solve(){	
-   
+  
 }
 
 int main(){

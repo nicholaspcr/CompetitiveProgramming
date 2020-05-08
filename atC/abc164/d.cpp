@@ -20,33 +20,33 @@ template <typename T> void min_self(T& a, T b){
   a = min(a,b);
 }
 
-void solve(){	
-  int n,k; cin>>n>>k;
-  vi v(n);
-  for(int i=0;i<n;i++) cin>>v[i];
-  vi pref(2*k), suff(2*k);
-  for(int i=0;i<n/2;i++){
-    int a = v[i];
-    int b = v[n-1-i];
-    pref[min(a,b) + 1]++;
-    suff[max(a,b) + k]++;
+int check(string str){
+  int num = 0;
+  for(int i = 0; i < (int)str.size(); i++){
+    num *= 10;
+    num += (int)str[i] - (int)'0';
   }
-  int ans = 0;
-  int best = 0;
-  for(int i = 0; i < 2*k; i++){
-    best += pref[i];
-    best -= suff[i];
-    max_self(ans, best);
+  return num%2019;
+}
+
+
+void solve(){
+  string s;
+  cin>>s;
+  if((int)s.size() < 4){
+    if(check(str))
+      cout<<
+  }else{
+
   }
-  cout<<ans<<endl;
 }
 
 int main(){
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
-  int t; cin>>t;
-  while(t--) solve();
+  //int t; cin >> t;
+  //while(t--) solve();
   //
-  //solve();
+  solve();
   return 0;
 }

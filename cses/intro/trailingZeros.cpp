@@ -10,25 +10,20 @@ typedef vector<int> vi;
 typedef pair<int,int> pi;
 typedef long long ll;
 
-int memo[10];
-
-int qtdDigits(int n){
-    int c = 0;
-    while(n){
-        c++;
-        n /= 10;
-    }
-    return c;
+int qtdD(int n){
+  int op = 1;
+  while(n/10 > 0){
+    op++;
+    n/=10;
+  }
+  return op;
 }
 
 void solve(){
-    memo[0] = 0;
-    for(int i = 1; i < 10; i++){
-        memo[i] = 
-    }
-    int n; cin >> n;
-    int ans = (n/(10*qtdDigits(n))) * (qtdDigits(n)-1);
-    cout << ans << endl;
+  int n;cin>>n;
+  int p = n%10;
+  cout << qtdD(n)<<endl;
+
 }
 
 int main(){

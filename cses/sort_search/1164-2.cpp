@@ -20,8 +20,36 @@ template <typename T> void min_self(T& a, T b){
   a = min(a,b);
 }
 
+struct person{
+  int arrival, departure;
+  int room;
+
+  person operator < (const person &r) const{
+    return departure < r.arrival;
+  }
+};
+
 void solve(){	
-  
+  int n;cin>>n;
+  vector<person> p(n);
+  for(int i=0;i<n;i++){
+    cin>>p[i].arrival;
+    cin>>p[i].departure;
+  }
+  int ans = 0;
+  int curr = 0;
+  for(int i=0;i<n;i++){
+    if(curr == 0){
+
+    }else{
+      auto it = s.find((MP(0, v[i].F),0));
+      if(it != s.end()){
+        rooms[i] = it->S;
+        s.erase(it);
+        s.insert(MP(MP(v[i].S, v[i]
+      }
+    }
+  }
 }
 
 int main(){

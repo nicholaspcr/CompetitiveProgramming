@@ -20,7 +20,7 @@ template <typename T> void max_self(T& a, T b){
 void solve(){	
     int n; cin >> n;
     vpi v(n);
-	set<pair<pi, int>> segs;
+    set<pair<pi, int>> segs;
     for(int i = 0; i < n; i++){
 		cin >> v[i].F >> v[i].S;
         segs.insert(MP(MP(v[i].F, v[i].S), i));

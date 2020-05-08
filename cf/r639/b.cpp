@@ -20,23 +20,23 @@ template <typename T> void min_self(T& a, T b){
   a = min(a,b);
 }
 
+inline ll amountOfCards(int h){
+  return (2*h*(h+1))/2 + ((h-1)*h)/2;
+}
+
 void solve(){	
-  int n,k; cin>>n>>k;
-  vi v(n);
-  for(int i=0;i<n;i++) cin>>v[i];
-  vi pref(2*k), suff(2*k);
-  for(int i=0;i<n/2;i++){
-    int a = v[i];
-    int b = v[n-1-i];
-    pref[min(a,b) + 1]++;
-    suff[max(a,b) + k]++;
-  }
+  int n;cin>>n;
   int ans = 0;
-  int best = 0;
-  for(int i = 0; i < 2*k; i++){
-    best += pref[i];
-    best -= suff[i];
-    max_self(ans, best);
+  ll value = 0;
+  while(n >= 2){
+    for(int i = 2; i < sqrt(1e9); ++i){
+       value = amountOfCards(i);
+       if( value > n ){
+          n -= amountOfCards(i-1);
+          break;
+       }
+    }
+    ans++;
   }
   cout<<ans<<endl;
 }
@@ -44,7 +44,7 @@ void solve(){
 int main(){
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
-  int t; cin>>t;
+  int t; cin >> t;
   while(t--) solve();
   //
   //solve();

@@ -21,30 +21,29 @@ template <typename T> void min_self(T& a, T b){
 }
 
 void solve(){	
-  int n,k; cin>>n>>k;
-  vi v(n);
-  for(int i=0;i<n;i++) cin>>v[i];
-  vi pref(2*k), suff(2*k);
-  for(int i=0;i<n/2;i++){
-    int a = v[i];
-    int b = v[n-1-i];
-    pref[min(a,b) + 1]++;
-    suff[max(a,b) + k]++;
+  int n;cin>>n;
+  ll l = 0;
+  if(n < 4){
+    cout<<"2\n";
+    return;
   }
-  int ans = 0;
-  int best = 0;
-  for(int i = 0; i < 2*k; i++){
-    best += pref[i];
-    best -= suff[i];
-    max_self(ans, best);
+  for(int i=0;i<n/4;i++){
+    l += (1<<(n/2 - i));
+    l += (1<<(n/2 + i+1));
   }
-  cout<<ans<<endl;
+  ll r = 0;
+  for(int i=1;i<n/4;i++){
+    r += (1<<i);
+    r += (1<<(n-i+1));
+  }
+
+  cout<< (1<<n) - l <<endl;
 }
 
 int main(){
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
-  int t; cin>>t;
+  int t; cin >> t;
   while(t--) solve();
   //
   //solve();

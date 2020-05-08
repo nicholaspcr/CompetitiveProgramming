@@ -13,19 +13,23 @@ typedef vector<pi> vpi;
 typedef long long ll;
 
 template <typename T> void max_self(T& a, T b){
-	a = max(a,b);
+  a = max(a,b);
+}
+
+template <typename T> void min_self(T& a, T b){
+  a = min(a,b);
 }
 
 void solve(){	
-    
+  
 }
 
 int main(){
-	ios_base::sync_with_stdio(false);
-	cin.tie(NULL);
-    //int t; cin >> t;
-    //while(t--) solve();
-    //
-    solve();
-    return 0;
+  ios_base::sync_with_stdio(false);
+  cin.tie(NULL);
+  //int t; cin >> t;
+  //while(t--) solve();
+  //
+  //solve();
+  return 0;
 }
