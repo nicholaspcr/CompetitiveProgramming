@@ -20,27 +20,25 @@ template <typename T> void min_self(T& a, T b){
   a = min(a,b);
 }
 
-int getSmallest(int n, int v){
-  if(n == 0) return 0;
-  return min( n-(abs(v)%n), abs(v)%n);
-}
-
 void solve(){	
-  int n;cin>>n;
-  vi v(n);
-  vi memo(n+1);
-  for(int i=0;i<n;++i){
-    cin>>v[i];
-    int smallest = getSmallest( v[i], i+1 );
-    memo[ (i+1)+smallest ] = 1; 
-  }
-  for(int i=0;i<n;++i){
-    if(memo[i] == 0){
-      cout<<"NO\n";
-      return;
-    }
-  }
-  cout<<"YES\n";
+  int n0, n1, n2;
+		cin >> n0 >> n1 >> n2;
+		if (n1 == 0) {
+			if (n0 != 0) {
+				cout << string(n0 + 1, '0') << endl;
+			} else {
+				cout << string(n2 + 1, '1') << endl;
+			}
+                        return;
+		}
+		string ans;
+		for (int i = 0; i < n1 + 1; ++i) {
+			if (i & 1) ans += "0";
+			else ans += "1";
+		}
+		ans.insert(1, string(n0, '0'));
+		ans.insert(0, string(n2, '1'));
+		cout << ans << endl;
 }
 
 int main(){
