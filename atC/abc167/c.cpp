@@ -20,76 +20,38 @@ template <typename T> void min_self(T& a, T b){
   a = min(a,b);
 }
 
-int points(pair<int,pi> p){
-  return p.F + p.S.F + p.S.S;
-}
-
-
-void solve(){	
+void solve(){
   int n,m,x; cin>>n>>m>>x;
-  vector<pair<int,vi>> info(n);
-  for(int i=0;i<n;++i){
-    cin>>info[i].F;
-    for(int j=0;j<m;++j){
-      int ent;
-      cin>>ent;
-      info[i].S.PB(ent);
-    }
-  }
-  sort(all(info));
-  /*
+  vector<vi> a(n, vi(m));
+  vi c(n);
   for(int i=0;i<n;i++){
-    cout<<info[i].F<<" ";
-    for(int j=0;j<m;j++)
-      cout<<info[i].S[j]<<" ";
-    cout<<endl;
-  }*/
-  int qtd = 0;
-  while(qtd <= n){
-    vi indexes;
-    vi ans(m);
-    int currAns = 0;
-    for(int i=0; i<n, ans.size()<qtd; i++){
-      vi currSkills(m);
-      vi tempSkills(m);
-      pi best = MP(0,0);
-      int bestCost = 0;
-      for(int j=0;j<n;j++){
-        bool btr = false;
-        for(int k=0;k<(int)indexes.size();k++){
-          if(indexes[k] == j){ btr = true; break;}
-        }
-        if(btr) continue;
-        int tmp = 0;
-        for(int k=0;k<m;k++){
-          if(info[j].S[k]+currSkills[k] >= 10) tmp++;
-        }
-        if(tmp > best.F){
-          best = MP(tmp, j);
-          bestCost = info[j].F;
-          for(int k=0;k<m;k++)
-            tempSkills[k] = currSkills[k] + info[j].S[k];
-        }
-      }
-      indexes.PB(best.S);
-      for(int k=0;k<m;k++)
-        ans[k] += tempSkills[k];
-
-      currAns += bestCost;
-    }
-    bool t = true;
-    for(int i=0;i<m;i++){
-      if(ans[i] < 10){
-        t = false;
-        break;
-      }
-    }
-    if(t){
-      cout<<currAns<<endl;
-      break;
-    }
-    qtd++;
+      cin>>c[i];
+      for(int j=0;j<m;j++)
+        cin>>a[i][j];
   }
+  int all = 1<<n;
+  int ans = INT_MAX;
+  for(int mask=0;mask<all;mask++){
+    vi level(m);
+    int cost = 0;
+    for(int i=0;i<n;i++){
+      if((mask>>i)&1){
+        cost+=c[i];
+        for(int j=0;j<m;j++){
+          level[j] += a[i][j];
+        }
+      }
+    }
+    bool ok = true;
+    for(int i=0;i<m;i++)
+      if(level[i] < x) ok = false;
+    if(ok)
+      min_self(ans, cost);
+  }
+  if(ans == INT_MAX) cout<<-1<<endl;
+  else
+    cout<<ans<<endl;
+
 }
 
 int main(){
