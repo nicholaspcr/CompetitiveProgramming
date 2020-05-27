@@ -21,45 +21,36 @@ template <typename T> void min_self(T& a, T b){
 }
 
 void solve(){
-  ll teste = 1;
-  for(int i=0;i<10;i++)
-    teste*=26;
-  cout<<teste<<endl;
-  int n,t; cin>>n>>t;
+  int n, m; cin>>n>>m;
   vector<string> vs(n);
-  for(int i=0;i<n;i++)cin>>vs[i];
-  string ans = "";
-  for(int i=0;i<t;i++){
-    map<char,int> m;
-    for(int j=0;j<n;j++){
-      m[vs[j][i]]++;
-    }
-    pair<char,int> op = MP('a', 0);
-    for(auto it:m){
-      if(it.S > op.S)
-        op = MP(it.F, it.S);
-    }
-    //cout<<op.F<<endl;
-    ans+=op.F;
-  }
-  
-  vi check(n);
+  for(int i=0;i<n;i++) cin>>vs[i];
+  string ans = vs[0];
 
-  for(int i=0;i < t;i++){
-    int errors = 0;
-    for(int j=0;j<n;j++){
-      if(vs[j][i] != ans[i]){
-        check[j]++;
+  for(int i=0;i<m;i++){
+    char op = ans[i];
+    
+    for(char ch='a';ch<='z';ch++){
+      ans[i] = ch;
+      bool flag = true;
+      for(int j=0;j<n;j++){
+        int errors = 0;
+        for(int k=0;k<m;k++){
+          if(ans[k] != vs[j][k])
+            errors++;
+        }
+        if(errors > 1){
+          flag = false;
+          break;
+        }
+      }
+      if(flag){
+        cout<<ans<<endl;
+        return;
       }
     }
+    ans[i] = op;
   }
-  for(int i=0;i<n;i++){
-    if(check[i] > 1){
-      cout<<-1<<endl;
-      return;
-    }
-  }
-  cout<<ans<<endl;
+  cout<<-1<<endl;
 }
 
 int main(){
