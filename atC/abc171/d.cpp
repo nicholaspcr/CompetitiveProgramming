@@ -21,12 +21,23 @@ template <typename T> void min_self(T& a, T b){
 }
 
 void solve(){	
-  ll n;cin>>n;
-  for(int i=1;i<=n;i++){
-    ll a = ((i*i)*((i*i)-1))/2;
-    ll b = 4*(i-1)*(i-2);
-    cout<<a-b<<endl;
+  int n; cin>>n;
+  vi v(n);
+  ll sum = 0;
+  map<int,int> m;
+  for(int i=0;i<n;++i){ cin>>v[i]; sum += v[i]; m[v[i]]++;}
+  int q; cin>>q;
+  vector<ll> ans(q);
+  for(int i=0;i<q;i++){
+    int a, b;
+    cin>>a>>b;
+    int qtd = m[a];
+    sum += (b-a)*qtd;
+    ans[i] = sum;
+    m[a] = 0; m[b] += qtd;
   }
+  for(int i=0;i<q;i++)
+    cout<<ans[i]<<endl;
 }
 
 int main(){

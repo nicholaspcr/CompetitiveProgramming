@@ -21,20 +21,28 @@ template <typename T> void min_self(T& a, T b){
 }
 
 void solve(){	
-  ll n;cin>>n;
-  for(int i=1;i<=n;i++){
-    ll a = ((i*i)*((i*i)-1))/2;
-    ll b = 4*(i-1)*(i-2);
-    cout<<a-b<<endl;
+  int n;cin>>n;
+  vi v(n);
+  for(int i=0;i<n;++i) cin>>v[i];
+  int ans = 0;
+  int a = 0, b = 0;
+  for(int i=0;i<n;++i){
+    if(i&1 && ~v[i]&1)
+      a++;
+    if(~i&1 && v[i]&1)
+      b++;
   }
+  if(a == b) cout<<a<<endl;
+  else
+    cout<<-1<<endl;
 }
 
 int main(){
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
-  //int t; cin >> t;
-  //while(t--) solve();
+  int t; cin >> t;
+  while(t--) solve();
   //
-  solve();
+  //solve();
   return 0;
 }

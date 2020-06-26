@@ -21,12 +21,16 @@ template <typename T> void min_self(T& a, T b){
 }
 
 void solve(){	
-  ll n;cin>>n;
-  for(int i=1;i<=n;i++){
-    ll a = ((i*i)*((i*i)-1))/2;
-    ll b = 4*(i-1)*(i-2);
-    cout<<a-b<<endl;
+  int n; cin>>n;
+  string str; cin>>str;
+  const int MOD = 1e9+7;
+  ll ans = 1;
+  ll sz = str.size();
+  while(n--){
+    ans = (ans+(sz+1)*26)%MOD;
+    sz++;
   }
+  cout<<ans<<endl;
 }
 
 int main(){

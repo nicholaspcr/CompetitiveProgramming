@@ -21,12 +21,11 @@ template <typename T> void min_self(T& a, T b){
 }
 
 void solve(){	
-  ll n;cin>>n;
-  for(int i=1;i<=n;i++){
-    ll a = ((i*i)*((i*i)-1))/2;
-    ll b = 4*(i-1)*(i-2);
-    cout<<a-b<<endl;
-  }
+  char ch; cin>>ch;
+  if(ch >= 'A' && ch <= 'Z')
+    cout<<"A\n";
+  else
+    cout<<"a\n";
 }
 
 int main(){

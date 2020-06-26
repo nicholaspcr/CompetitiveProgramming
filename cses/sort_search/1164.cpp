@@ -4,6 +4,8 @@
 #define PB push_back
 #define MP make_pair
 #define all(x) x.begin(), x.end()
+#define FF first.first
+#define FS first.second
 #define MAXN 200001
 
 using namespace std;
@@ -17,47 +19,40 @@ template <typename T> void max_self(T& a, T b){
   a = max(a,b);
 }
 
-void solve(){	
+void solve(){
   int n; cin>>n;
-  vi ans(n);
-  set<int> unused;
-  for(int i=1;i<n;i++) unused.insert(i);
-  set<pair<int,int>> occupied;
-
-  vector<pair<pi,int>> entry(n);
+  vector<pair<pi, int>> v;
   for(int i=0;i<n;i++){
-    cin>>entry[i].F.F>>entry[i].F.S;
-    entry[i].S = i;
+    int a, b;
+    cin>>a>>b;
+    v.PB(MP(MP(a, 1), i));
+    v.PB(MP(MP(b+1,-1), i));
   }
-  sort(all(entry));
-
-  priority_queue<pi,vector<pi>, greater<pi>> departure;
-  for(int i=0;i<n;i++){
-    /*
-    cout<<"\nSet:\n";
-    for(auto elem : unused)
-      cout<<elem<<" ";
-    cout<<endl;
-    */
-    //if(departure.size())
-    //  cout<<"departure top: "<< departure.top().F << " " <<departure.top().S<<endl;
-    while(departure.size() && departure.top().F < entry[i].F.F){
-      unused.insert(departure.top().S);
-      departure.pop();
+  sort(all(v));
+  int ans = 0, sum = 0;
+  for(auto &x: v){
+    sum += x.FS;
+    ans = max(ans, sum);
+  }
+  cout<<ans<<endl;
+  vi id(n);
+  set<int> st;
+  for(int i=0;i<n;i++) st.insert(i+1);
+  
+  for(auto &x:v){
+    if(x.FS != 1){
+      st.insert(id[x.S]);
+      continue;
     }
-    auto it = unused.lower_bound(1);
-    unused.erase(*it);
-    ans[entry[i].S] = *it;
-    departure.push(MP(entry[i].F.S, *it));
+    auto it = st.begin();
+    id[x.S] = *it;
+    st.erase(it);
   }
-  int big = 0;
-  for(int i=0;i<n;i++) max_self(big,ans[i]);
-  cout<<big<<endl;
-  for(int i=0;i<n;i++)
-    cout<<ans[i]<<" ";
+  for(int i=0;i<n;i++){
+    cout<<id[i]<<" ";
+  }
   cout<<endl;
 }
-
 int main(){
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);

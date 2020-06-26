@@ -1,6 +1,8 @@
 #include <bits/stdc++.h>
 #define F first
 #define S second
+#define SF second.first
+#define SS second.second
 #define PB push_back
 #define MP make_pair
 #define all(x) x.begin(), x.end()
@@ -21,30 +23,30 @@ template <typename T> void min_self(T& a, T b){
 }
 
 
-void solve(){
-  int n,t; cin>>n>>t;
-  vpi v(n);
-  for(int i=0;i<n;i++){
-    cin>>v[i].F;
-    v[i].S = i+1;
+void print(const vector<int>& v){
+  for(int x : v)
+    cout<<x+1<<" ";
+  cout<<endl;
+}
+
+void solve(){	
+  int n;ll x;
+  cin>>n>>x;
+  vi v(n);
+  for(int i=0;i<n;++i){
+    cin>>v[i];
   }
-  sort(all(v));
-  for(int i=0;i<n-2;i++){
-    int l = i+1;
-    int r = n-1;
-    while(l<r){
-      if(v[i].F + v[l].F + v[r].F == t){
-        vi ans;
-        ans.PB(v[i].S); ans.PB(v[l].S); ans.PB(v[r].S);
-        sort(all(ans));
-        for(int i=0;i<3;i++)
-          cout<<ans[i]<<" ";
-        cout<<endl;
-        return;
-      }else if(v[i].F + v[l].F + v[r].F < t){
-        l++;
-      }
-      else r--;
+  map<int,pair<int,int>> lhs;
+  for(int i=0;i<n;i++){
+    for(int j=0;j<i;j++)
+      lhs[v[i]+v[j]] = {i,j};
+    for(int j=i+2; j<n;j++){
+      int t = v[j] + v[i+1];
+      auto it = lhs.find(x-t);
+      if(it == lhs.end()) continue;
+
+      print({it->S.F, it->S.S, i+1, j});
+      return;  
     }
   }
   cout<<"IMPOSSIBLE\n";
