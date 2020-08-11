@@ -14,10 +14,10 @@ Folder containing everything of Competitive Programming
 
 ### TODO:<br>
   - implement:
-    [x] - dijkstra
-    [x] - segTree
-    [ ] - ford-fulkerson
+    - [:ballot_box_with_check:] - dijkstra
+    - [:ballot_box_with_check:] - segTree
+    - [:ballot_box_with_check:] - ford-fulkerson
   - study -> CSES PROBLEMS:
-    [x] - sorting problems
-    [ ] - Dp
-    [ ] - graphs
+    - [:ballot_box_with_check:] - sorting problems
+    - [ ] - Dp
+    - [ ] - graphs
