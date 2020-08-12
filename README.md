@@ -16,7 +16,7 @@ Folder containing everything of Competitive Programming
   - implement:
     - [x] - dijkstra
     - [x] - segTree
-    - [x] - ford-fulkerson
+    - [ ] - ford-fulkerson
   - study -> CSES PROBLEMS:
     - [x] - sorting problems
     - [ ] - Dp
