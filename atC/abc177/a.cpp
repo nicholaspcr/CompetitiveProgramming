@@ -21,24 +21,12 @@ template <typename T> void min_self(T& a, T b){
 }
 
 void solve(){	
-  int k; cin>>k;
-  ll t = 7;
-  ll MOD = 1e18;
-  int c = 1;
-  bool f = false;
-  while(c < 1e7){
-    if(t%k == 0){
-      f = true;
-      break;
-    }
-    c++;
-    t = t*10 + 7;
-    t = t%MOD;
-  }
-  if(f)
-    cout<<c<<endl;
+  int d,t,s;
+  cin>>d>>t>>s;
+  if(t*s < d)
+    cout<<"No\n";
   else
-    cout<<-1<<endl;
+    cout<<"Yes\n";
 }
 
 int main(){

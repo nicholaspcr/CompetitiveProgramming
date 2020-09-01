@@ -21,24 +21,19 @@ template <typename T> void min_self(T& a, T b){
 }
 
 void solve(){	
-  int k; cin>>k;
-  ll t = 7;
-  ll MOD = 1e18;
-  int c = 1;
-  bool f = false;
-  while(c < 1e7){
-    if(t%k == 0){
-      f = true;
+  string s,t;
+  cin>>s>>t;
+  int ans = INT_MAX;
+  for(int i=0;i<(int)s.size();i++){
+    int best = 0;
+    if(i + (int)t.size() > s.size())
       break;
+    for(int j=i;j < i +(int)t.size(); j++){
+      if(s[j] != t[j-i]) best++;
     }
-    c++;
-    t = t*10 + 7;
-    t = t%MOD;
+    min_self(ans,best);
   }
-  if(f)
-    cout<<c<<endl;
-  else
-    cout<<-1<<endl;
+  cout<<ans<<endl;
 }
 
 int main(){
