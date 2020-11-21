@@ -22,57 +22,39 @@ template <typename T> void min_self(T& a, T b){
 }
 
 ll ans = 0;
+vector<vector<bool>> mat(8, vector<bool>(8));
 
-bool check(int i, int j, int mat[8][8]){
-  for(int k=0;k<8;k++){
-    if(mat[i][k] == 1)
-      return false;
-    if(mat[k][j] == 1)
-      return false;
-    if(mat[(i+k)%8][(j+k)%8] == 1)
-      return false;
-    if(mat[(i-k+8)%8][(j-k+8)%8] == 1)
-      return false;
+vector<bool> col(16), dr(16), dl(16);
+
+void search(int r){
+  if(r == 8){
+      ans++;
+      return;
   }
-  return true;
-}
 
-void solution(int board[8][8] , int piece){
   for(int i=0;i<8;i++){
-    for(int j=0;j<8;j++){
-      if(board[i][j] == -1) continue;
-      if(check(i,j, board) == true){
-        if(piece == 8)
-          ans++;
-        else{
-          board[i][j] = 1;
-          solution(board, piece+1);
-          board[i][j] = 0;
-        }
-      }
-    }
+    if(col[i] || dr[r+i] || dl[r-i+7] || mat[r][i])
+      continue;
+
+    col[i] = dr[r+i] = dl[r-i+7] = true;
+    search(r+1);
+    col[i] = dr[r+i] = dl[r-i+7] = false;
   }
 }
+
 
 void solve(){
-  int mat[8][8];
-  string str;
-  // PROBLEM ON INPUT READING
   for(int i=0;i<8;i++){
-      cin>>str;
-      for(int j=0;j<str.size();j++){
-        if(str[j] =='*') mat[i][j] = -1;
-        else mat[i][j] = 0;
-      }
+    string str;
+    cin>>str;
+    for(int j=0;j<(int)str.size();j++){
+      if(str[j] == '*')
+        mat[i][j] = true;
+    }
   }
-  cout<<"TESTE\n";
-  for(int i=0;i<8;i++){
-    for(int j=0;j<8;j++)
-      cout<<mat[i][j]<<" ";
-    cout<<endl;
-  }
-  cout<<"Done\n";
-  solution(mat, 1);
+  for(int i=0;i<16;i++)
+    col[i] = dr[i] = dl[i] = false;
+  search(0);
   cout<<ans<<endl;
 }
 

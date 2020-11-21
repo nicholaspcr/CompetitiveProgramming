@@ -51,13 +51,6 @@ int editDistDP(string str1, string str2, int m, int n)
                                    dp[i - 1][j - 1]); // Replace 
         } 
     } 
-   
-	for(int i = 0; i <= m; i++){
-		for(int j = 0; j <= n; j++)
-			cout << dp[i][j] << " ";
-		cout << endl;
-	}
-  
     return dp[m][n]; 
 } 
     

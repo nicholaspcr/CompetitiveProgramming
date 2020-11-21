@@ -3,57 +3,95 @@
 #define S second
 #define PB push_back
 #define MP make_pair
+#define all(x) x.begin(), x.end()
 
 using namespace std;
 
 typedef vector<int> vi;
 typedef pair<int,int> pi;
+typedef vector<pi> vpi;
 typedef long long ll;
 
-int opX[4] = { 1, 0, -1, 0 };
-int opY[4] = { 0, 1, 0, -1 };
-
-int calc(int i, int n, string mov, pi pos){
-    if(pos.F >= 7 || pos.S >= 7 || pos.F < 0 || pos.S < 0)
-        return 0;
-    if(i == 48) return 1;
-    cout << pos.F << " " << pos.S << endl;
-    int ans = 0;
-    if(mov[i] == '?'){
-        for(int j = 0; j < 4; j++){
-            pi newPos = pos;
-            newPos.F = newPos.F + opX[j];
-            newPos.S = newPos.S + opY[j];
-            ans += calc(i+1, n, mov, newPos);
-        }
-    }else{
-        if(mov[i] == 'R'){
-            pos.F++;
-            ans = calc(i+1, n, mov, pos);
-        }else if(mov[i] == 'D'){
-            pos.S--;
-            ans = calc(i+1, n, mov, pos);
-        }else if(mov[i] == 'L'){
-            pos.F--;
-            ans = calc(i+1, n, mov, pos);
-        }else if(mov[i] == 'U'){
-            pos.S++;
-            ans = calc(i+1, n, mov, pos);
-        }
-    }
-    return ans;
+template <typename T> void max_self(T& a, T b){
+  a = max(a,b);
 }
 
-void solve(){
-    string s; cin >> s;
-    pi pos = MP(0,0);
-    cout << calc(0, (int)s.size(), s, pos) << endl;
+template <typename T> void min_self(T& a, T b){
+  a = min(a,b);
+}
+
+string str;
+int ans = 0;
+vector<vi> mat(7, vi(7));
+pi dir[4] = {{0,1}, {1,0}, {0,-1}, {-1,0}};
+int lim[4] = {0,0,0,0}; // left,right, bottom, up !
+
+
+void solve(pi p, int pStr, int steps){
+  if(steps == 48){
+    ans++;
+    return;
+  }
+
+  if(str[pStr] == '?'){
+    for(int i=0;i<4;i++){
+      p.F += dir[i].F;
+      p.S += dir[i].S;
+
+      // check limits of board
+      if( lim[1] - p.F > 7 ||
+          p.F - lim[0] > 7 ||
+          p.S - lim[2] > 7 ||
+          lim[3] - p.S > 7){
+        p.F -= dir[i].F;
+        p.S -= dir[i].S;
+        continue;
+      }
+      solve(p, pStr+1, steps+1);
+      p.F -= dir[i].F;
+      p.S -= dir[i].S;
+    }
+  }else{
+    if(str[pStr] == 'D'){
+      p.F++;
+      if( lim[1] - p.F > 7 ||
+          p.F - lim[0] > 7){
+        return;
+      }
+    }
+    if(str[pStr] == 'L'){
+      p.F--;
+      if( lim[1] - p.F > 7 ||
+          p.F - lim[0] > 7){
+        return;
+      }
+    }
+    if(str[pStr] == 'U'){
+      p.S++;
+      if( lim[3] - p.S > 7 ||
+          p.S - lim[2] > 7){
+        return;
+      }
+    }
+    if(str[pStr] == 'R'){
+      p.S--;
+      if( lim[3] - p.S > 7 ||
+          p.S - lim[2] > 7){
+        return;
+      }
+    }
+    solve(p, pStr+1, steps+1); 
+  }
 }
 
 int main(){
-    //int t; cin >> t;
-    //while(t--) solve();
-    //
-    solve();
-    return 0;
+  ios_base::sync_with_stdio(false);
+  cin.tie(NULL);
+  //int t; cin >> t;
+  //while(t--) solve();
+  //
+  cin>>str;
+  solve({0,0},0, 0);
+  cout<<ans<<endl;
+  return 0;
 }
