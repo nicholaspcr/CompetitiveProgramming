@@ -13,7 +13,13 @@ typedef vector<ii> vii;
 typedef long long ll;
 
 void solve(){	
-  
+  int v[4];
+  int ans = 1e5;
+  for(int i=0;i<4;i++){
+    cin>>v[i];
+    ans = min(ans, v[i]);
+  }
+  cout<<ans<<endl;
 }
 
 int main(){
@@ -22,6 +28,6 @@ int main(){
   //int t; cin >> t;
   //while(t--) solve();
   //
-  //solve();
+  solve();
   return 0;
 }

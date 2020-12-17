@@ -1,24 +1,16 @@
 #include <bits/stdc++.h>
-#define F first
-#define S second
-#define PB push_back
-#define MP make_pair
+#define f first
+#define s second
+#define pb push_back
+#define mp make_pair
 #define all(x) x.begin(), x.end()
 
 using namespace std;
 
 typedef vector<int> vi;
-typedef pair<int,int> pi;
-typedef vector<pi> vpi;
+typedef pair<int,int> ii;
+typedef vector<ii> vii;
 typedef long long ll;
-
-template <typename T> void max_self(T& a, T b){
-  a = max(a,b);
-}
-
-template <typename T> void min_self(T& a, T b){
-  a = min(a,b);
-}
 
 void solve(){	
   

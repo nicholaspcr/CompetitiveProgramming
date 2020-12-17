@@ -1,120 +1,83 @@
 #include <bits/stdc++.h>
-#define F first
-#define S second
-#define PB push_back
+#define f first
+#define s second
+#define pb push_back
 #define MP make_pair
 #define all(x) x.begin(), x.end()
-#define MAXN 1000002
 
 using namespace std;
 
 typedef vector<int> vi;
-typedef pair<int,int> pi;
-typedef vector<pi> vpi;
+typedef pair<int,int> ii;
+typedef vector<ii> vii;
 typedef long long ll;
 
 template <typename T> void max_self(T& a, T b){
-	a = max(a,b);
+  a = max(a,b);
 }
 
-bool check(char c){
-	return c == 'A' || c == 'B' || c == '.';
+template <typename T> void min_self(T& a, T b){
+  a = min(a,b);
 }
 
-vi g[MAXN];
-int vis[MAXN];
-string str;
-int currMv;
 int n, m;
-pi pA, pB;
+char A[1000][1000];
+bool vis[1000][1000];
+// previousStep stores the previous direction that we moved in to arrive that this cell
+int previousStep[1000][1000];
 
-void dfs(int u, int mv, bool *t){
-	vis[u] = 1;
-	pi coor = MP(u/m, u%m);
-	if(coor.F == pB.F && coor.S == pB.S){
-		*t = true;
-		return;
-	}	
-	for(int i = 0; i < (int)g[u].size(); i++){
-		int v = g[u][i];
-		if(!vis[v])
-			dfs(v, mv+1, t);
-		if(*t){
-			if(mv+1 < currMv)
-				str = "";
-			}else{
-				break;
-			}
-			pi newCoor = MP(v/m, v%m);
-			if(newCoor.F == coor.F+1){
-				str += 'D';
-			}else if(newCoor.F == coor.F-1)
-				str += 'U';
-			else if(newCoor.S == coor.S+1)
-				str += 'R';
-			else if(newCoor.S == coor.S-1)
-				str += 'L';
-				
-			*t = true;
-		}
-	}	
-	vis[u] = 2;	
-}
 
-void solve(){	
-	for(int i = 0; i < MAXN; i++) g[i].clear();
-	memset(vis, 0, sizeof vis);
-	str = "";    
-	currMv = 0;
+// 0 = up, 1 = right, 2 = down, 3 = left
+int dx[4] = { -1, 0, 1, 0 };
+int dy[4] = { 0, 1, 0, -1 };
+string stepDir = "URDL";
+
+int main() {
     cin >> n >> m;
-    char ent[n][m];
-    for(int i = 0; i < n; i++){
-		for(int j = 0; j < m; j++){
-			cin >> ent[i][j];
-			if(ent[i][j] == 'A')
-				pA = MP(i,j);
-			if(ent[i][j] == 'B')
-				pB = MP(i,j);
-		}
-	}
-	
-	int dirX[4] = { 1, 0, -1, 0 };
-	int dirY[4] = { 0, 1, 0,  -1};
-	for(int i = 0; i < n; i++){
-		for(int j = 0; j < m; j++){
-			if(check(ent[i][j])){
-				for(int k = 0; k < 4; k++){
-					int nX = i + dirX[k];
-					int nY = j + dirY[k];
-					if(nX < 0 || nX >= n || nY < 0 || nY >= m)
-						continue;
-					else{
-						if(check(ent[nX][nY])){
-							g[i*m + j].PB(nX*m + nY);
-							g[nX*m + nY].PB(i*m + j);
-						}
-					}
-				}
-			}
-		}
-	}
-	bool teste = false;
-	dfs(pA.F * m + pA.S, 0, &teste);
-	if(teste){	
-		cout << "YES\n";
-		cout << (int)str.size() << endl;		
-		reverse(all(str));
-		cout << str << endl;
-	}else
-		cout << "NO\n";	
-}
-
-int main(){
-	ios_base::sync_with_stdio(false);
-	cin.tie(NULL);
-    //int t; cin >> t;
-    //while(t--) solve();
-    //
-    solve();
+    queue<ii> q;
+    ii begin, end;
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            cin >> A[i][j];
+            if (A[i][j] == 'A') {
+                begin = MP(i, j);
+            } else if (A[i][j] == 'B') {
+                end = MP(i, j);
+            }
+        }
+    }
+    q.push(begin);
+    vis[begin.f][begin.s] = true;
+    while (!q.empty()) {
+        ii u = q.front(); q.pop();
+        for (int i = 0; i < 4; i++) {
+            ii v = MP(u.f + dx[i], u.s + dy[i]);
+            if (v.f < 0 || v.f >= n || v.s < 0 || v.s >= m) continue;
+            if (A[v.f][v.s] == '#') continue;
+            if (vis[v.f][v.s]) continue;
+            vis[v.f][v.s] = true;
+            previousStep[v.f][v.s] = i;
+            q.push(v);
+        }
+    }
+    if (vis[end.f][end.s]) {
+        cout << "YES" << endl;
+        vector<int> steps;
+        while (end != begin) {
+            int p = previousStep[end.f][end.s];
+            steps.push_back(p);
+            // undo the previous step to get back to the previous square
+            // Notice how we subtract dx/dy, whereas we added dx/dy before
+            end = MP(end.f - dx[p], end.s - dy[p]);
+        }
+        reverse(steps.begin(), steps.end());
+        cout << steps.size() << endl;
+        for (char c : steps) {
+            cout << stepDir[c];
+        }
+        cout << endl;
+    } else {
+        cout << "NO" << endl;
+    }
     return 0;
 }
