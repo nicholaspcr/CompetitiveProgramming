@@ -14,8 +14,37 @@ typedef long long ll;
 typedef vector<ll> vll;
 typedef vector<pair<ll,ll>> vpll;
 
+vll tree(1<<25,0);
+int n, q;
+
+ll sum(int k){
+  ll s = 0;
+  while(k >= 1){
+    s += tree[k];
+    k -= k&-k;
+  }
+  return s;
+}
+
+void add(int k, int x){
+  while(k <= n){
+    tree[k] += x;
+    k += k&-k;
+  }
+}
+
+
 void solve(){	
-  
+  cin>>n>>q;
+  for(int i=0;i<n;i++){
+    int x;cin>>x;
+    add(i+1, x);
+  }
+  while(q--){
+    int a, b;
+    cin>>a>>b;
+    cout<<sum(b) - sum(a-1)<<endl;
+  }
 }
 
 int main(){
@@ -24,6 +53,6 @@ int main(){
   //int t; cin >> t;
   //while(t--) solve();
   //
-  //solve();
+  solve();
   return 0;
 }

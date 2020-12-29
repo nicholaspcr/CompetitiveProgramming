@@ -12,46 +12,32 @@ typedef pair<int,int> pi;
 typedef vector<pi> vpi;
 typedef long long ll;
 
-template <typename T> void max_self(T& a, T b){
-  a = max(a,b);
-}
-
-template <typename T> void min_self(T& a, T b){
-  a = min(a,b);
-}
-
 void solve(){	
-  int n;cin>>n;
-  if(n == 2)
-		cout<<2<<endl;
-	else if (n == 3)
-		cout<<3<<endl;
-	else{
-		vi ans;		
-		for(int i=2;i<=sqrt(n);i++){
-			vi op;
-			ll opR = 1;
-			if(n%i == 0){
-					op.PB(i);
-					opR *= i;					
-					ll cpyN = (ll)n/i;
-					while(opR <= n){
-						if(cpyN%opR){
-							opR *= i;
-						}else{
-							op.PB(opR);
-							cpyN/=opR;
-						}
-					}
-					if(op.size() > ans.size())
-						ans = op;
-			}
-		}
-		cout<<ans.size()<<endl;
-		for(auto e:ans)
-			cout<<e<<" ";
-		cout<<endl;
-	}
+  ll n; cin>>n;
+  vector<pair<int,ll>> op;
+  for(ll i = 2; i*i <= n; i++){
+    int cont = 0;
+    while(n%i == 0){
+      cont++;
+      n/=i;
+    }
+    if(cont)
+      op.PB({cont,i});
+  }
+  if(n > 1){
+    op.PB({1,n});
+  }
+
+  sort(op.rbegin(), op.rend());
+  // answer of size i(op.F) and with the value of op[0].S
+  vector<ll> ans(op[0].F, op[0].S);
+  for(int i=1;i<int(op.size());i++){
+    for(int j=0;j<op[i].F;j++)
+      ans[op[0].F-1] *= op[i].S;
+  }
+  cout<<ans.size()<<endl;
+  for(auto it: ans) cout<< it << " ";
+  cout<<endl;
 }
 
 int main(){
