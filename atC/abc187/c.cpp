@@ -14,7 +14,23 @@ typedef long long ll;
 typedef vector<ll> vll;
 
 void solve(){	
-  
+  int n;cin>>n;
+  set<string> a, b;
+  while(n--){
+    string str; cin>>str;
+    if(str[0] == '!'){
+      str.erase(str.begin());
+      b.insert(str);
+    }else
+      a.insert(str);
+  }
+  for(auto it : b){
+    if(a.find(it) != a.end()){
+      cout<<it<<endl;
+      return;
+    }
+  }
+  cout<<"satisfiable\n";
 }
 
 int main(){
@@ -23,6 +39,6 @@ int main(){
   //int t; cin >> t;
   //while(t--) solve();
   //
-  //solve();
+  solve();
   return 0;
 }

@@ -14,7 +14,22 @@ typedef long long ll;
 typedef vector<ll> vll;
 
 void solve(){	
-  
+  int n; cin>>n;
+  vll v(n);
+  ll x = 0;
+  for(int i=0;i<n;i++){
+    ll a, b; cin>>a>>b;
+    x -= a;
+    v[i] = a+a+b;
+  }
+  sort(all(v));
+  ll ans = 0;
+  while(x <= 0){
+    ans++;
+    x += v.back();
+    v.pop_back();
+  }
+  cout<<ans<<endl;
 }
 
 int main(){
@@ -23,6 +38,6 @@ int main(){
   //int t; cin >> t;
   //while(t--) solve();
   //
-  //solve();
+  solve();
   return 0;
 }

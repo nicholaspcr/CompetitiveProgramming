@@ -14,7 +14,18 @@ typedef long long ll;
 typedef vector<ll> vll;
 
 void solve(){	
-  
+  int a,b;
+  cin>>a>>b;
+  int l = 0, r = 0;
+  while(a){
+    l += a%10;
+    a/=10;
+  }
+  while(b){
+    r += b%10;
+    b/=10;
+  }
+  cout<<max(l,r)<<endl;
 }
 
 int main(){
@@ -23,6 +34,6 @@ int main(){
   //int t; cin >> t;
   //while(t--) solve();
   //
-  //solve();
+  solve();
   return 0;
 }

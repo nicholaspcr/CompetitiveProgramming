@@ -14,7 +14,22 @@ typedef long long ll;
 typedef vector<ll> vll;
 
 void solve(){	
-  
+  int n; cin>>n;
+  vii p(n);
+  for(int i=0;i<n;i++)
+    cin>>p[i].f>>p[i].s;
+  int ans = 0;
+  for(int i=0;i<n;i++){
+    for(int j=i+1;j<n;j++){
+      int a = p[i].f;
+      int b = p[i].s;
+      int c = p[j].f;
+      int d = p[j].s;
+      if(abs(a-c) >= abs(b-d))
+        ans++;
+    }
+  }
+  cout<<ans<<endl;
 }
 
 int main(){
@@ -23,6 +38,6 @@ int main(){
   //int t; cin >> t;
   //while(t--) solve();
   //
-  //solve();
+  solve();
   return 0;
 }
