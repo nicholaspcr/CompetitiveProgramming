@@ -1,20 +1,30 @@
 #include <bits/stdc++.h>
-#define f first
-#define s second
-#define pb push_back
-#define mp make_pair
-#define all(x) x.begin(), x.end()
+#include <ext/pb_ds/assoc_container.hpp>
+
+#define F first
+#define S second
+#define PB push_back
+#define MP make_pair
+#define all(x) x.begin(), x.end() 
+#define REP(i,a,b) for(int i = a; i < b; i++)
+#define PER(i,a,b) for(int i = a; i >= b; i--)
 
 using namespace std;
+using namespace __gnu_pbds;
 
-typedef vector<int> vi;
-typedef pair<int,int> ii;
-typedef vector<ii> vii;
 typedef long long ll;
-typedef vector<ll> vll;
+typedef pair<int,int> pi;
+typedef vector<int> vi;
+typedef vector<ll> vl;
+typedef vector<pi> vpi;
 
-void solve(){	
-  
+typedef tree<int,null_type,less<int>,rb_tree_tag,
+        tree_order_statistics_node_update> indexed_set;
+// find_by_order(x); -> returns an iterator to the element at given position
+// order_by_key(x);  -> returns the position of a given element
+//      |-> if does not exists in set, returns position it would have if it was.
+
+void solve(){	 
 }
 
 int main(){
